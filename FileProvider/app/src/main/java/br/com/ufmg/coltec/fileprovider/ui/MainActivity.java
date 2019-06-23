@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -12,11 +11,10 @@ import android.widget.Button;
 
 import java.io.File;
 
-import br.com.ufmg.coltec.fileprovider.file.FileSystemHelper;
-import br.com.ufmg.coltec.fileprovider.ui.permission.Permissions;
 import br.com.ufmg.coltec.fileprovider.R;
+import br.com.ufmg.coltec.fileprovider.file.FileSystemHelper;
 
-import static android.os.Build.VERSION_CODES.KITKAT;
+import static br.com.ufmg.coltec.fileprovider.util.IntentUtil.intentFileSelect;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -32,18 +30,12 @@ public class MainActivity extends AppCompatActivity {
         selectFile();
     }
 
-    private void selectFile() {
+    public void selectFile() {
         selectFile.setOnClickListener(new View.OnClickListener() {
 
-            @RequiresApi(api = KITKAT)
             @Override
             public void onClick(View v) {
-                if (Permissions.checkPermissions(MainActivity.this)) {
-                    Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
-                    intent.addCategory(Intent.CATEGORY_OPENABLE);
-                    intent.setType("*/*");
-                    startActivityForResult(intent, READ_REQUEST_CODE);
-                }
+                intentFileSelect(MainActivity.this, READ_REQUEST_CODE);
             }
         });
     }
@@ -55,7 +47,6 @@ public class MainActivity extends AppCompatActivity {
             Uri uri;
             if (resultData != null) {
                 uri = resultData.getData();
-                Log.i("URI", "Uri: " + (uri != null ? uri.toString() : ""));
                 try {
                     File file = null;
                     if (uri != null) {
