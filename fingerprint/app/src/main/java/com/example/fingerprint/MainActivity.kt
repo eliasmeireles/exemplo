@@ -24,7 +24,6 @@ import javax.crypto.KeyGenerator
 
 class MainActivity : AppCompatActivity() {
 
-    private val KEY_STORE_ALIAS = "USER_FINGERPRINT"
     private lateinit var textViewUserEmail: String
     private lateinit var userPassword: String
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,18 +36,7 @@ class MainActivity : AppCompatActivity() {
                 storeUseDataOnKeyStore()
             }
         }
-        //ifApi28More()
-        api23To27()
-    }
-
-    private fun api23To27() {
-        @Suppress("DEPRECATION")
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            AppFingerprintManager(this,
-                AppFingerprintManager.FingerPrintDelegate {
-                    getUserDataFromKeyStore()
-                }).authenticates()
-        }
+        authenticatesValidation()
     }
 
     private fun storeUseDataOnKeyStore() {
@@ -68,9 +56,17 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun ifApi28More() {
+    private fun authenticatesValidation() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
             requestFingerPrint()
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            @Suppress("DEPRECATION")
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                AppFingerprintManager(this,
+                    AppFingerprintManager.FingerPrintDelegate {
+                        getUserDataFromKeyStore()
+                    }).authenticates()
+            }
         }
     }
 
