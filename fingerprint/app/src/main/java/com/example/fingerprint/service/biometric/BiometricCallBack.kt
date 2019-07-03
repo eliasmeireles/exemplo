@@ -1,4 +1,4 @@
-package com.example.fingerprint.service
+package com.example.fingerprint.service.biometric
 
 import android.hardware.biometrics.BiometricPrompt
 import android.os.Build
