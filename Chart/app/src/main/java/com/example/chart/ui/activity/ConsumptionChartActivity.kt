@@ -5,20 +5,18 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.example.chart.R
 import com.example.chart.model.Consumption
-import com.github.mikephil.charting.charts.LineChart
-import com.github.mikephil.charting.data.Entry
-import com.github.mikephil.charting.data.LineData
-import com.github.mikephil.charting.data.LineDataSet
+import com.github.mikephil.charting.charts.BarChart
+import com.github.mikephil.charting.data.*
 
 class ConsumptionChartActivity : AppCompatActivity() {
 
     private lateinit var consumptionList: ArrayList<Consumption>
-    private lateinit var lineChart: LineChart
+    private lateinit var barChart: BarChart
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chart_consumption)
-        lineChart = findViewById(R.id.chart_data_display)
+        barChart = findViewById(R.id.chart_data_display)
         getListOfConsumption()
     }
 
@@ -28,13 +26,21 @@ class ConsumptionChartActivity : AppCompatActivity() {
             consumptionList =
                 intent.getSerializableExtra(CONSUMPTION_LIST_EXTRA_KEY) as ArrayList<Consumption>
 
-            val entry = ArrayList<Entry>()
-            consumptionList.forEach { consumption ->  entry.add(Entry(consumption.value.toFloat(), consumption.value.toFloat()))}
+            val entry = ArrayList<BarEntry>()
+            consumptionList.forEach { consumption ->
+                entry.add(
+                    BarEntry(
+                        consumptionList.indexOf(consumption).toFloat(),
+                        consumption.value.toFloat(),
+                        ContextCompat.getColor(this@ConsumptionChartActivity, R.color.colorPrimaryDark)
+                    )
+                )
+            }
 
-            val lineDataSet = LineDataSet(entry, "Consumption")
-            lineDataSet.color = ContextCompat.getColor(this@ConsumptionChartActivity, R.color.colorPrimary)
-            lineChart.data = LineData(lineDataSet)
-            lineChart.invalidate()
+            val barDataSet = BarDataSet(entry, "Consumption")
+            barChart.data = BarData(barDataSet)
+            barChart.invalidate()
+            barChart.description.isEnabled = false
 
         }
     }
