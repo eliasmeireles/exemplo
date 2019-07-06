@@ -4,14 +4,19 @@ import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.chart.R
 import com.example.chart.model.Consumption
+import com.example.chart.ui.activity.ConsumptionChartActivity.Companion.CONSUMPTION_LIST_EXTRA_KEY
 import com.example.chart.ui.activity.ConsumptionFormActivity.Companion.CONSUMPTION_EXTRA_KEY
 import com.example.chart.ui.activity.ConsumptionFormActivity.Companion.NEW_CONSUMPTION_CODE
 import com.example.chart.ui.adapter.ConsumptionAdapter
 import kotlinx.android.synthetic.main.activity_main.*
+import java.util.*
+import kotlin.collections.ArrayList
 
 class MainActivity : AppCompatActivity() {
 
@@ -26,8 +31,26 @@ class MainActivity : AppCompatActivity() {
         initializeAdapter()
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        val menuInflater = menuInflater
+        menuInflater.inflate(R.menu.menu, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == R.id.display_chart) {
+            val intent = Intent(this@MainActivity, ConsumptionChartActivity::class.java)
+            val bundle = Bundle()
+            bundle.putSerializable(CONSUMPTION_LIST_EXTRA_KEY, consumptionList)
+            intent.putExtras(bundle)
+            startActivity(intent)
+        }
+        return false
+    }
+
     private fun initializeAdapter() {
         consumptionList = ArrayList()
+        createDemoConsumption()
         consumptionAdapter = ConsumptionAdapter(consumptionList)
         recycler_view_consumption.apply {
             layoutManager = LinearLayoutManager(this@MainActivity, RecyclerView.VERTICAL, false)
@@ -51,5 +74,14 @@ class MainActivity : AppCompatActivity() {
             consumptionAdapter.addItem(consumption)
 
         }
+    }
+
+    private fun createDemoConsumption() {
+        consumptionList.add(Consumption(date = Date(), name = "Rice", value = 12.2, description = "Some kind of food."))
+        consumptionList.add(Consumption(date = Date(), name = "Beans", value = 18.2, description = "Some kind of food."))
+        consumptionList.add(Consumption(date = Date(), name = "Potato", value = 7.2, description = "Some kind of food."))
+        consumptionList.add(Consumption(date = Date(), name = "Banana", value = 4.2, description = "Some kind of food."))
+        consumptionList.add(Consumption(date = Date(), name = "Strawberry Pie", value = 10.2, description = "Some kind of food."))
+        consumptionList.add(Consumption(date = Date(), name = "Soda", value = 2.2, description = "Some kind of drink."))
     }
 }

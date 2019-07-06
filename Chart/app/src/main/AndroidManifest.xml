@@ -21,8 +21,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.activity.ConsumptionFormActivity"
-            android:label="@string/new_consumption"/>
+        <activity
+            android:name=".ui.activity.ConsumptionFormActivity"
+            android:label="@string/new_consumption" />
+        <activity
+            android:name=".ui.activity.ConsumptionChartActivity"
+            android:label="@string/chart_consumption" />
     </application>
 
 </manifest>

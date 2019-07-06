@@ -1,7 +1,6 @@
 package com.example.chart.ui.viewholder
 
 import android.view.View
-import android.widget.AutoCompleteTextView
 import android.widget.TextView
 import com.example.chart.R
 import com.example.chart.extension.findViewById
