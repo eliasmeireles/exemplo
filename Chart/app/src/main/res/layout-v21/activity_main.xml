@@ -18,6 +18,7 @@
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_add_new_consumption"
         android:layout_width="wrap_content"
+        android:backgroundTint="@color/colorPrimary"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/default_layout_margin"
         android:src="@drawable/ic_add"
