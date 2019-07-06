@@ -1,3 +1,8 @@
 <resources>
-    <string name="app_name">Chart</string>
+    <string name="app_name">Consumption List</string>
+    <string name="new_consumption">New Consumption</string>
+    <string name="consumption_name">Name</string>
+    <string name="consumption_value">Value</string>
+    <string name="consumption_date">Date</string>
+    <string name="consumption_description">Description</string>
 </resources>
