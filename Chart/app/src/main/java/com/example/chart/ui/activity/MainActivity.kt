@@ -83,5 +83,11 @@ class MainActivity : AppCompatActivity() {
         consumptionList.add(Consumption(date = Date(), name = "Banana", value = 4.2, description = "Some kind of food."))
         consumptionList.add(Consumption(date = Date(), name = "Strawberry Pie", value = 10.2, description = "Some kind of food."))
         consumptionList.add(Consumption(date = Date(), name = "Soda", value = 2.2, description = "Some kind of drink."))
+        consumptionList.add(Consumption(date = Date(), name = "Coffee", value = 5.65, description = "Some kind of drink."))
+        consumptionList.add(Consumption(date = Date(), name = "Juice", value = 3.15, description = "Some kind of drink."))
+        consumptionList.add(Consumption(date = Date(), name = "Energy Drink", value = 8.55, description = "Some kind of drink."))
+        consumptionList.add(Consumption(date = Date(), name = "Milk", value = 5.45, description = "Some kind of drink."))
+        consumptionList.add(Consumption(date = Date(), name = "Tea", value = 3.75, description = "Some kind of drink."))
+        consumptionList.add(Consumption(date = Date(), name = "Bear", value = 6.52, description = "Some kind of drink."))
     }
 }
