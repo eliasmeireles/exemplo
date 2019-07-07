@@ -110,6 +110,15 @@ class ConsumptionChartActivity : AppCompatActivity() {
             )
         }
         val lineDataSet = LineDataSet(entryLineData, "Consumption")
+        lineDataSet.color = Color.rgb(45, 55, 70)
+        lineDataSet.lineWidth = 2.5f
+        lineDataSet.setCircleColor(Color.rgb(55, 55, 70))
+        lineDataSet.circleRadius = 5f
+        lineDataSet.fillColor = Color.rgb(20, 55, 70)
+        lineDataSet.mode = LineDataSet.Mode.CUBIC_BEZIER
+        lineDataSet.setDrawValues(true)
+        lineDataSet.valueTextSize = 10f
+        lineDataSet.valueTextColor = Color.rgb(55, 65, 70)
         lineDataSet.color = ContextCompat.getColor(this@ConsumptionChartActivity, R.color.colorDark)
         return LineData(lineDataSet)
     }
