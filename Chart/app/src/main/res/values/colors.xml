@@ -4,4 +4,11 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorDark">#000000</color>
     <color name="colorAccent">#D81B60</color>
+
+    <color name="jan">#F44336</color>
+    <color name="feb">#009688</color>
+    <color name="mar">#8BC34A</color>
+    <color name="apr">#FFC107</color>
+    <color name="jun">#3F51B5</color>
+    <color name="jul">#27441B</color>
 </resources>

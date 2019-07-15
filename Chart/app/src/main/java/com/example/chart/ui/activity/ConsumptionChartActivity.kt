@@ -10,7 +10,6 @@ import com.github.mikephil.charting.animation.Easing
 import com.github.mikephil.charting.charts.BarChart
 import com.github.mikephil.charting.charts.CombinedChart
 import com.github.mikephil.charting.charts.LineChart
-import com.github.mikephil.charting.components.AxisBase
 import com.github.mikephil.charting.components.Legend
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.*
@@ -22,13 +21,21 @@ class ConsumptionChartActivity : AppCompatActivity() {
     private lateinit var barChart: BarChart
     private lateinit var lineChart: LineChart
     private lateinit var combinedChart: CombinedChart
-
+    private lateinit var colors: ArrayList<Int>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chart_consumption)
         barChart = findViewById(R.id.bar_chart_data_display)
         lineChart = findViewById(R.id.line_chart_data_display)
         combinedChart = findViewById(R.id.combined_chart_data_display)
+
+        colors = ArrayList()
+        colors.add(ContextCompat.getColor(this@ConsumptionChartActivity, R.color.jan))
+        colors.add(ContextCompat.getColor(this@ConsumptionChartActivity, R.color.feb))
+        colors.add(ContextCompat.getColor(this@ConsumptionChartActivity, R.color.mar))
+        colors.add(ContextCompat.getColor(this@ConsumptionChartActivity, R.color.apr))
+        colors.add(ContextCompat.getColor(this@ConsumptionChartActivity, R.color.jun))
+        colors.add(ContextCompat.getColor(this@ConsumptionChartActivity, R.color.jul))
 
         getListOfConsumption()
     }
@@ -46,46 +53,49 @@ class ConsumptionChartActivity : AppCompatActivity() {
     }
 
     private fun combinedChartBui() {
+        combinedChartLegendSetting()
+        axisSetting()
         combinedChart.description.isEnabled = false
+        combinedChart.setScaleEnabled(false)
         combinedChart.setDrawGridBackground(false)
         combinedChart.setDrawBarShadow(false)
         combinedChart.setBackgroundColor(Color.WHITE)
         combinedChart.isHighlightFullBarEnabled = false
         combinedChart.drawOrder = arrayOf(CombinedChart.DrawOrder.BAR, CombinedChart.DrawOrder.LINE)
-        combinedChartLegendSetting()
-        axisSetting()
 
         val combinedData = CombinedData()
-        combinedData.setData(lineDataBuild())
         combinedData.setData(barDataBuild())
+        combinedData.setData(lineDataBuild())
         combinedChart.xAxis.mAxisMaximum = combinedData.xMax
-
+        val xAxis = combinedChart.xAxis
+        xAxis.axisMaximum = combinedData.xMax + 0.35F
         combinedChart.data = combinedData
         combinedChart.invalidate()
     }
 
     private fun axisSetting() {
         val axisRight = combinedChart.axisRight
-        axisRight.setDrawGridLines(false)
-        axisRight.axisMaximum = 0f
+        axisRight.isEnabled = false
 
         val axisLeft = combinedChart.axisLeft
         axisLeft.setDrawGridLines(false)
         axisLeft.axisMinimum = 0f
 
         val xAxis = combinedChart.xAxis
-        xAxis.position = XAxis.XAxisPosition.BOTH_SIDED
-        xAxis.axisMaximum = 0f
-        xAxis.axisMaximum = 1f
+        xAxis.position = XAxis.XAxisPosition.BOTTOM
+        xAxis.labelRotationAngle = -45F
+        xAxis.granularity = 1f
+        xAxis.axisMinimum = -0.4f
         xAxis.valueFormatter = object : ValueFormatter() {
             override fun getFormattedValue(value: Float): String {
-                return consumptionList[value.toInt()].name
+                return "jun/2018"
             }
         }
     }
 
     private fun combinedChartLegendSetting() {
         val legend = combinedChart.legend
+        legend.isEnabled = false
         legend.isWordWrapEnabled = false
         legend.verticalAlignment = Legend.LegendVerticalAlignment.BOTTOM
         legend.horizontalAlignment = Legend.LegendHorizontalAlignment.CENTER
@@ -132,29 +142,18 @@ class ConsumptionChartActivity : AppCompatActivity() {
     }
 
     private fun barDataBuild(): BarData {
-        val entryLineData = ArrayList<Entry>()
         val entryBarData = ArrayList<BarEntry>()
         consumptionList.forEach { consumption ->
             entryBarData.add(
                 BarEntry(
-                    consumptionList.indexOf(consumption).toFloat(),
-                    consumption.value.toFloat(),
-                    ContextCompat.getColor(this@ConsumptionChartActivity, R.color.colorPrimaryDark)
-                )
-            )
-
-            entryLineData.add(
-                Entry(
                     consumptionList.indexOf(consumption).toFloat(),
                     consumption.value.toFloat()
                 )
             )
         }
 
-        val lineDataSet = LineDataSet(entryLineData, "Consumption")
-        lineDataSet.color = ContextCompat.getColor(this@ConsumptionChartActivity, R.color.colorDark)
-
         val barDataSet = BarDataSet(entryBarData, "Consumption")
+        barDataSet.colors = colors
         return BarData(barDataSet)
     }
 
