@@ -1,6 +1,5 @@
 package com.exemplo.filedownload.ui;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -13,7 +12,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.exemplo.filedownload.R;
 import com.exemplo.filedownload.service.FileDownload;
 
-import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
