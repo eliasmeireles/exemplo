@@ -7,7 +7,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import com.example.imagefilechooser.permission.REQUST_IMAGE_CODE
+import com.example.imagefilechooser.permission.REQUEST_IMAGE_CODE
 import com.example.imagefilechooser.permission.startImageSelectIntent
 import kotlinx.android.synthetic.main.activity_main.*
 import java.io.FileNotFoundException
@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (resultCode == Activity.RESULT_OK && requestCode == REQUST_IMAGE_CODE) {
+        if (resultCode == Activity.RESULT_OK && requestCode == REQUEST_IMAGE_CODE) {
             if (data != null && data.data != null) {
                 val selectedImageUri = data.data
 

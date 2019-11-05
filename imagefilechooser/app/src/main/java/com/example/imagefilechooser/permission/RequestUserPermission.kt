@@ -12,9 +12,10 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import java.io.File
 
+
 const val CAMERA_ACCESS_CODE = 10
 const val READ_WRITE_ACCESS_CODE = 11
-const val REQUST_IMAGE_CODE = 12
+const val REQUEST_IMAGE_CODE = 12
 
 fun startImageSelectIntent(activity: Activity): Uri? {
 
@@ -52,11 +53,8 @@ private fun openImageIntent(activity: Activity): Uri? {
     imagePickerIntent.type = "image/*"
     cameraIntents.add(imagePickerIntent)
     val captureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-    cameraIntents.add(captureIntent)
-
     val packageManager = activity.packageManager
     val listCam = packageManager.queryIntentActivities(captureIntent, 0)
-
     for (res in listCam) {
         val packageName = res.activityInfo.packageName
         val intent = Intent(captureIntent)
@@ -66,17 +64,16 @@ private fun openImageIntent(activity: Activity): Uri? {
         cameraIntents.add(intent)
     }
 
+    //FileSystem
     val galleryIntent = Intent()
-    galleryIntent.type = "image/*"
+    galleryIntent.type = "image/"
     galleryIntent.action = Intent.ACTION_GET_CONTENT
 
-
-    val chooserIntent = Intent.createChooser(galleryIntent, "Select an Image")
-    chooserIntent.putExtra(
-        Intent.EXTRA_INITIAL_INTENTS,
-        cameraIntents.toTypedArray<Parcelable>()
-    )
-    activity.startActivityForResult(chooserIntent, REQUST_IMAGE_CODE)
+    // Chooser of filesystem options.
+    val chooserIntent = Intent.createChooser(galleryIntent, "Select Source")
+    // Add the camera options.
+    chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, cameraIntents.toTypedArray<Parcelable>())
+    activity.startActivityForResult(chooserIntent, REQUEST_IMAGE_CODE)
     return outputFileUri
 }
 
