@@ -1,18 +1,20 @@
 package com.example.surfaceviedeo
 
+import android.content.Intent
 import android.graphics.Point
 import android.media.AudioAttributes
 import android.media.MediaPlayer
+import android.net.Uri
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.*
 import android.widget.FrameLayout
 import android.widget.Toast
 import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatActivity
 import com.exemplo.mediaplayer.DataSource
 import kotlinx.android.synthetic.main.activity_media_player.*
-import java.lang.Exception
+
 
 const val DATA_SOURCE_KEY = "DATA_SOURCE_KEY"
 
@@ -75,6 +77,8 @@ class MediaPlayerActivity : AppCompatActivity(), SurfaceHolder.Callback {
         mediaPlayer.setAudioAttributes(createAudioAttributes())
         mediaPlayer.setOnCompletionListener {
             if (!it.isPlaying) {
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(rtspUrl))
+                startActivity(intent)
                 Toast.makeText(this, "Não foi possivel reproduzir a mídia!", Toast.LENGTH_LONG)
                     .show()
                 finish()
