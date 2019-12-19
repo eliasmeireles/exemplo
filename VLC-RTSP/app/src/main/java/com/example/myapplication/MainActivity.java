@@ -18,7 +18,7 @@ import org.videolan.libvlc.Media;
 import org.videolan.libvlc.MediaPlayer;
 
 public class MainActivity extends AppCompatActivity implements TextureView.SurfaceTextureListener,
-        org.videolan.libvlc.MediaPlayer.EventListener {
+        MediaPlayer.EventListener {
 
     private TextureView textureView = null;
     private View loadingContainer;
@@ -38,8 +38,8 @@ public class MainActivity extends AppCompatActivity implements TextureView.Surfa
     }
 
     @Override
-    protected void onStart() {
-        super.onStart();
+    protected void onResume() {
+        super.onResume();
         textureView.setSurfaceTextureListener(this);
         textureView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,17 +53,13 @@ public class MainActivity extends AppCompatActivity implements TextureView.Surfa
 
     @Override
     protected void onDestroy() {
-        if (mediaPlayer != null) {
-            mediaPlayer.release();
-        }
+        VLCInstance.restart(this);
         super.onDestroy();
     }
 
     @Override
     protected void onStop() {
-        if (mediaPlayer != null) {
-            mediaPlayer.release();
-        }
+        VLCInstance.restart(this);
         super.onStop();
     }
 
@@ -82,13 +78,13 @@ public class MainActivity extends AppCompatActivity implements TextureView.Surfa
         settingUpPlayer();
 //       Uri uri = Uri.parse("http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4");
 //        Uri uri = Uri.parse("rtsp://wowzaec2demo.streamlock.net/vod/mp4:BigBuckBunny_115k.mov");
-        Uri uri = Uri.parse("rtsp://192.168.0.101:8080/video/h264");
+        Uri uri = Uri.parse("rtsp://192.168.0.132:8080/video/h264");
 
 //        Uri uri = Uri.parse("rtsp://wowzaec2demo.streamlock.net/vod/mp4:BigBuckBunny_115k.mov");
         Media media = new Media(VLCInstance.get(this), uri);
         mediaPlayer.setMedia(media);
         mediaPlayer.setEventListener(this);
-        mediaPlayer.play(uri);
+        mediaPlayer.play();
     }
 
     @Override

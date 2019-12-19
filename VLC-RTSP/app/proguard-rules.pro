@@ -19,3 +19,9 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+# Do not optimize/shrink LibVLC, because of native code
+-keep class org.videolan.libvlc.** { *; }
+# Same for MediaLibrary
+
+
