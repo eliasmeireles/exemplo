@@ -1,4 +1,0 @@
-#Sat Feb 08 22:20:27 BRST 2020
-base.0=/Users/eliasferreira/Downloads/ViewsWithCanvas/app/build/intermediates/dex/debug/mergeDexDebug/out/classes.dex
-path.0=classes.dex
-renamed.0=classes.dex
