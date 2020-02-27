@@ -1,8 +1,9 @@
-package com.example.sharedcode
+package com.example.sharedcode.ui.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.sharedcode.ui.main.MainFragment
+import com.example.sharedcode.R
+import com.example.sharedcode.ui.fragment.MainFragment
 
 class MainActivity : AppCompatActivity() {
 

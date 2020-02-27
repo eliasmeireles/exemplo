@@ -1,4 +1,4 @@
-package com.example.sharedcode.ui.main
+package com.example.sharedcode.ui.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.sharedcode.R
+import com.example.sharedcode.ui.viewmodel.MainViewModel
 
 class MainFragment : Fragment() {
 
