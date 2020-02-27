@@ -8,6 +8,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.sharedcode.R
 import com.example.sharedcode.ui.viewmodel.MainViewModel
+import com.jetbrains.handson.mpp.mobile.createApplicationScreenMessage
+import kotlinx.android.synthetic.main.main_fragment.*
 
 class MainFragment : Fragment() {
 
@@ -25,5 +27,7 @@ class MainFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
+
+        main_text.text = createApplicationScreenMessage()
     }
 }
