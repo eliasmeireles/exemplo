@@ -11,7 +11,7 @@ import br.com.alura.leilao.exception.UsuarioJaDeuCincoLancesException;
 
 public class Leilao implements Serializable {
 
-    private final long id;
+    private long id;
     private final String descricao;
     private final List<Lance> lances;
 
@@ -96,6 +96,10 @@ public class Leilao implements Serializable {
 
     public Long getId() {
         return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     @Override
