@@ -1,7 +1,5 @@
 package br.com.alura.leilao.api;
 
-import android.content.Context;
-
 import br.com.alura.leilao.api.retrofit.client.LeilaoWebClient;
 import br.com.alura.leilao.api.retrofit.client.RespostaListener;
 import br.com.alura.leilao.exception.LanceMenorQueUltimoLanceException;

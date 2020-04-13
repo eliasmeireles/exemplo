@@ -43,4 +43,8 @@ public class Usuario implements Serializable {
     public String getNome() {
         return nome;
     }
+
+    public long getId() {
+        return this.id;
+    }
 }

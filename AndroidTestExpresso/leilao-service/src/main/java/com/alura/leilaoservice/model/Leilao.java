@@ -1,5 +1,7 @@
 package com.alura.leilaoservice.model;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Leilao {
@@ -10,6 +12,13 @@ public class Leilao {
 
     public long getId() {
         return id;
+    }
+
+    public void proporLance(Lance lance) {
+        if (this.lances == null) {
+            this.lances = new ArrayList<>();
+        }
+        this.lances.add(lance);
     }
 
     public void setId(long id) {
@@ -25,6 +34,9 @@ public class Leilao {
     }
 
     public List<Lance> getLances() {
+        if (lances != null && !lances.isEmpty()) {
+            Collections.sort(lances);
+        }
         return lances;
     }
 

@@ -23,12 +23,12 @@ import br.com.alura.leilao.ui.activity.ListaUsuarioActivity;
 
 public class NovoLanceDialog {
 
-    private static final String TITULO = "Novo lance";
-    private static final String DESCRICAO_BOTAO_POSITIVO = "Propor";
+    public static final String TITULO = "Novo lance";
+    public static final String DESCRICAO_BOTAO_POSITIVO = "Propor";
     private static final String DESCRICAO_BOTAO_NEGATIVO = "Cancelar";
-    private static final String USUARIOS_NAO_ENCONTRADOS = "Usuários não encontrados";
-    private static final String MENSAGEM_NAO_EXISTE_USUARIOS_CADASTRADOS = "Não existe usuários cadastrados! Cadastre um usuário para propor o lance.";
-    private static final String CADASTRAR_USUARIO = "Cadastrar usuário";
+    public static final String USUARIOS_NAO_ENCONTRADOS = "Usuários não encontrados";
+    public static final String MENSAGEM_NAO_EXISTE_USUARIOS_CADASTRADOS = "Não existe usuários cadastrados! Cadastre um usuário para propor o lance.";
+    public static final String CADASTRAR_USUARIO = "Cadastrar usuário";
 
     private final Context context;
     private final LanceCriadoListener listener;

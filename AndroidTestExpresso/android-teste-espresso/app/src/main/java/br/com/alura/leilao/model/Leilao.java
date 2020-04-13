@@ -9,7 +9,7 @@ import br.com.alura.leilao.exception.LanceMenorQueUltimoLanceException;
 import br.com.alura.leilao.exception.LanceSeguidoDoMesmoUsuarioException;
 import br.com.alura.leilao.exception.UsuarioJaDeuCincoLancesException;
 
-public class Leilao implements Serializable {
+public class Leilao implements Serializable{
 
     private long id;
     private final String descricao;

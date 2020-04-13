@@ -42,6 +42,14 @@ public class ListaLeilao {
         return leilao;
     }
 
+    public void proporLance(Lance lance, long leilaoId) {
+        for (Leilao leilao : leiloes) {
+            if (leilao.getId() == leilaoId) {
+                leilao.proporLance(lance);
+            }
+        }
+    }
+
     public void reset() {
         leiloes.clear();
     }

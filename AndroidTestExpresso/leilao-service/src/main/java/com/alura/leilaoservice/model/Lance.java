@@ -1,6 +1,8 @@
 package com.alura.leilaoservice.model;
 
-public class Lance {
+import org.jetbrains.annotations.NotNull;
+
+public class Lance implements Comparable<Lance> {
 
     private Usuario usuario;
     private double valor;
@@ -19,5 +21,11 @@ public class Lance {
 
     public void setValor(double valor) {
         this.valor = valor;
+    }
+
+
+    @Override
+    public int compareTo(@NotNull Lance o) {
+        return Double.compare(o.getValor(), valor);
     }
 }

@@ -8,6 +8,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 
+import java.util.List;
+
 import br.com.alura.leilao.R;
 import br.com.alura.leilao.api.EnviadorDeLance;
 import br.com.alura.leilao.api.retrofit.client.LeilaoWebClient;
@@ -117,9 +119,10 @@ public class LancesLeilaoActivity extends AppCompatActivity {
 
     private void adicionaMaioresLances(Leilao leilao) {
         StringBuilder sb = new StringBuilder();
-        for (Lance lance :
-                leilao.tresMaioresLances()) {
-            sb.append(lance.getValor())
+        List<Lance> lances = leilao.tresMaioresLances();
+        FormatadorDeMoeda formatadorDeMoeda = new FormatadorDeMoeda();
+        for (Lance lance : lances) {
+            sb.append(formatadorDeMoeda.formata(lance.getValor()))
                     .append(" - ")
                     .append(lance.getUsuario())
                     .append("\n");

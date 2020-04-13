@@ -10,13 +10,13 @@ import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface LeilaoService {
 
     @GET("leilao")
     Call<List<Leilao>> todos();
 
-    @PUT("leilao/{id}/lance")
-    Call<Void> propoe(@Path("id") Long id, @Body Lance lance);
-
+    @POST("leilao/lance")
+    Call<Void> propoe(@Query("leilaoId") Long id, @Body Lance lance);
 }

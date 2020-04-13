@@ -19,7 +19,7 @@ public class ViewMatchr {
                                                                final String descricao,
                                                                final double maiorLanceEsperado) {
         return new BoundedMatcher<View, RecyclerView>(RecyclerView.class) {
-            private Matcher<View> displayed = isDisplayed();            ;
+            private Matcher<View> displayed = isDisplayed();
             private final FormatadorDeMoeda formatadorDeMoeda = new FormatadorDeMoeda();
             private final String maiorLanceFormatadoEsperado = formatadorDeMoeda.formata(maiorLanceEsperado);
 
@@ -39,33 +39,68 @@ public class ViewMatchr {
             protected boolean matchesSafely(RecyclerView item) {
 
                 RecyclerView.ViewHolder viewHolderForAdapterPosition = item.findViewHolderForAdapterPosition(position);
+
                 if (viewHolderForAdapterPosition != null) {
                     View viewHolderDevolvido = viewHolderForAdapterPosition.itemView;
 
-                    boolean textViewTemDescricaoEsperada = verificaSeTemDescricaoEsperada(viewHolderDevolvido);
+                    boolean textViewTemDescricaoEsperada = verificaSeApareceDescricaoEsperada(viewHolderDevolvido);
 
-                    boolean textViewTemMaiorLanceEsperado = verificaSeTemMaiorLanceEsperado(viewHolderDevolvido);
+                    boolean textViewTemMaiorLanceEsperado = verificaSeApareceMaiorLanceEsperado(viewHolderDevolvido);
 
                     return textViewTemDescricaoEsperada &&
                             textViewTemMaiorLanceEsperado &&
                             displayed.matches(viewHolderDevolvido);
-
                 }
 
-                throw new IndexOutOfBoundsException("View do viewHolder na " + position + " não foi encontrada!");
+                return false;
             }
 
-            private boolean verificaSeTemMaiorLanceEsperado(View itemView) {
+            private boolean verificaSeApareceMaiorLanceEsperado(View itemView) {
                 TextView textViewValorMaiorLance = itemView.findViewById(R.id.item_leilao_maior_lance);
 
                 return textViewValorMaiorLance.getText()
-                        .toString().equals(maiorLanceFormatadoEsperado);
+                        .toString().equals(maiorLanceFormatadoEsperado) &&
+                        displayed.matches(textViewValorMaiorLance);
             }
 
-            private boolean verificaSeTemDescricaoEsperada(View itemView) {
+            private boolean verificaSeApareceDescricaoEsperada(View itemView) {
                 TextView textViewDescricao = itemView.findViewById(R.id.item_leilao_descricao);
                 return textViewDescricao.getText()
-                        .toString().equals(descricao);
+                        .toString().equals(descricao) &&
+                        displayed.matches(textViewDescricao);
+            }
+        };
+    }
+
+    public static Matcher<? super View> deveTerOUsuarioNaListaDeUsuarios(final int posicao, final String nomeDoUsuario) {
+        return new BoundedMatcher<View, RecyclerView>(RecyclerView.class) {
+
+            private Matcher<View> displayed = isDisplayed();
+
+            @Override
+            public void describeTo(Description description) {
+                description.appendText("View com o id de usuário ")
+                        .appendText( String.valueOf(posicao + 1))
+                        .appendText(", e o nome do usuário ")
+                        .appendText(nomeDoUsuario)
+                        .appendText(" na posição ")
+                        .appendText(String.valueOf(posicao))
+                        .appendText(" ")
+                        .appendDescriptionOf(displayed);
+            }
+
+            @Override
+            protected boolean matchesSafely(RecyclerView item) {
+                RecyclerView.ViewHolder viewHolderEncontradaPelaPosicao = item.findViewHolderForAdapterPosition(posicao);
+                if (viewHolderEncontradaPelaPosicao != null) {
+                    TextView textViewIdENomeDoUsuarioEsperado = viewHolderEncontradaPelaPosicao.itemView.findViewById(R.id.item_usuario_id_com_nome);
+                    boolean contemIdENomeDoUsuarioEsperado = textViewIdENomeDoUsuarioEsperado.getText().toString().equals("(" + (posicao + 1) + ") " + nomeDoUsuario);
+
+                    return contemIdENomeDoUsuarioEsperado &&
+                            displayed.matches(textViewIdENomeDoUsuarioEsperado);
+
+                }
+                return false;
             }
         };
     }
