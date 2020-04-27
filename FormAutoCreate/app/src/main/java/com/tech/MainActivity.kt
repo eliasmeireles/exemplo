@@ -41,16 +41,15 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun viewInitizlizer() {
-        name = CustomEditext(context = this@MainActivity, hintText = "Name", minimumCharacter = 10)
-        middleName = CustomEditext(context = this@MainActivity, hintText = "Last Name", minimumCharacter = 10)
-        email = EmailEditext(context = this@MainActivity, hintText = "E-mail")
-        phoneNumber = CustomEditext(context = this@MainActivity, hintText = "Phone Number", minimumCharacter = 10)
+        name = CustomEditext(context = this@MainActivity, hintText = "Name")
+        middleName = CustomEditext(context = this@MainActivity, hintText = "Last Name")
+        email = EmailEditext(context = this@MainActivity)
+        phoneNumber = CustomEditext(context = this@MainActivity, hintText = "Phone Number")
 
         birthday = CustomEditext(
             context = this@MainActivity,
             hintText = "Birthday",
             isClickable = false,
-            minimumCharacter = 10,
             action = {
                 val dateTime = DateTime.now()
                 val forPattern = DateTimeFormat.forPattern("dd/MM/yyyy")

@@ -10,7 +10,7 @@ class EmailEditext(
     errorMessage: String? = "This is not a valid e-mail!",
     maximumCharacter: Int = 0,
     minimumCharacter: Int = 0,
-    hintText: String? = null,
+    hintText: String? = "E-mail",
     emptyErrorMessage: String? = "This is a required field!",
     isClickable: Boolean = true,
     action: () -> Unit? = {}
