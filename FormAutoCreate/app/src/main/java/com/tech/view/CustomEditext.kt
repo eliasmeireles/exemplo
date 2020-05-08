@@ -6,6 +6,7 @@ import android.text.Editable
 import android.text.InputFilter
 import android.text.InputFilter.LengthFilter
 import android.text.TextWatcher
+import android.util.AttributeSet
 import android.util.Xml
 import android.view.View
 import android.widget.EditText
@@ -82,7 +83,7 @@ open class CustomEditext(
             e.printStackTrace()
         }
 
-        val attributeSet = Xml.asAttributeSet(parser)
+        val attributeSet: AttributeSet = Xml.asAttributeSet(parser)
         layoutParams = LayoutParams(context, attributeSet)
         textInputEditText.maxLines = maxLines
     }

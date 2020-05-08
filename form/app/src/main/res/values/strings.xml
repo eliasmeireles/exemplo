@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Form</string>
+    <string name="email">E-mail</string>
+    <string name="invalid_field">It is not a valid value!</string>
+    <string name="required_field">It is a required field!</string>
+    <string name="email_invalid">This is not a valid e-mail!</string>
+    <string name="name">Name</string>
+    <string name="date_format">dd/MM/yyyy</string>
+    <string name="number">Number</string>
+    <string name="date">Date</string>
+    <string name="cpf_cnpj">CPF/CNPJ</string>
+    <string name="cpng_not_valid">This CPNJ is not valid!</string>
+    <string name="cpf_not_valid">This CPF is not valid!</string>
+</resources>
