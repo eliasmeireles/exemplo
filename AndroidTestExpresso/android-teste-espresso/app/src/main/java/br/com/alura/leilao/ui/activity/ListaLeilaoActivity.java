@@ -15,7 +15,9 @@ import br.com.alura.leilao.ui.AtualizadorDeLeiloes;
 import br.com.alura.leilao.ui.recyclerview.adapter.ListaLeilaoAdapter;
 
 import static br.com.alura.leilao.ui.activity.LeilaoConstantes.CHAVE_LEILAO;
-
+import com.microsoft.appcenter.AppCenter;
+import com.microsoft.appcenter.analytics.Analytics;
+import com.microsoft.appcenter.crashes.Crashes;
 
 public class ListaLeilaoActivity extends AppCompatActivity {
 
@@ -30,6 +32,8 @@ public class ListaLeilaoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_leilao);
+        AppCenter.start(getApplication(), "650b1506-40f8-4ea8-a93f-fc54511441c5",
+                Analytics.class, Crashes.class);
         getSupportActionBar().setTitle(TITULO_APPBAR);
         configuraListaLeiloes();
     }
