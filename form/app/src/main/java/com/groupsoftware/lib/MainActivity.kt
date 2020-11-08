@@ -2,8 +2,8 @@ package com.groupsoftware.lib
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.groupsoftware.lib.util.isBeforeNow
-import com.groupsoftware.lib.view.*
+import com.example.readyedittext.util.isBeforeNow
+import com.example.readyedittext.view.*
 import kotlinx.android.synthetic.main.activity_main.*
 import net.danlew.android.joda.JodaTimeAndroid
 import org.joda.time.DateTime
@@ -13,7 +13,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var email: EmailEditText
     private lateinit var initialDateSelectEditText: DateSelectEditText
     private lateinit var endDateSelectEditText: DateSelectEditText
-    private lateinit var  cpfCnpjInputText: CpfCnpjEditText
+    private lateinit var cpfCnpjInputText: CpfCnpjEditText
+    private lateinit var textArea: TextArea
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,16 +36,19 @@ class MainActivity : AppCompatActivity() {
             isRequiredField = true
         )
 
-         cpfCnpjInputText = CpfCnpjEditText(
+        cpfCnpjInputText = CpfCnpjEditText(
             context = this,
             textHint = R.string.cpf_cnpj,
             isRequiredField = true
         )
+
+        textArea = TextArea(context = this)
         val viewGroup = ViewGroup(
             viewContainer = form_container,
             views = arrayListOf(
                 email,
-                cpfCnpjInputText
+                cpfCnpjInputText,
+                textArea
             )
         )
 

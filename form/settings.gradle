@@ -1,2 +1,3 @@
+include ':ReadyEditText'
 rootProject.name='Form'
 include ':app'
