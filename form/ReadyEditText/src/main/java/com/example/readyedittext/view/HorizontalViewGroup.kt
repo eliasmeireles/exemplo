@@ -1,11 +1,11 @@
-package com.groupsoftware.lib.view
+package com.example.readyedittext.view
 
 import android.annotation.SuppressLint
 import android.content.Context
 import android.util.Xml
 import android.view.View
 import android.widget.LinearLayout
-import com.groupsoftware.lib.R
+import com.example.readyedittext.R
 import org.jetbrains.annotations.NotNull
 import org.xmlpull.v1.XmlPullParser
 

@@ -1,9 +1,9 @@
-package com.groupsoftware.lib.view
+package com.example.readyedittext.view
 
 import android.annotation.SuppressLint
 import android.content.Context
 import android.text.InputType
-import com.groupsoftware.lib.R
+import com.example.readyedittext.R
 import org.jetbrains.annotations.NotNull
 
 @SuppressLint("ViewConstructor")

@@ -1,4 +1,4 @@
-package com.groupsoftware.lib.view
+package com.example.readyedittext.view
 
 import android.view.View
 

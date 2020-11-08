@@ -1,13 +1,13 @@
-package com.groupsoftware.lib.view
+package com.example.readyedittext.view
 
 import android.annotation.SuppressLint
 import android.content.Context
 import android.text.Editable
 import android.text.InputType
 import android.text.TextWatcher
-import com.groupsoftware.lib.R
-import com.groupsoftware.lib.util.CnpjValidation.Companion.isACNPJValid
-import com.groupsoftware.lib.util.CpfValidation.Companion.isAValidCPF
+import com.example.readyedittext.R
+import com.example.readyedittext.util.CnpjValidation.Companion.isACNPJValid
+import com.example.readyedittext.util.CpfValidation.Companion.isAValidCPF
 import org.jetbrains.annotations.NotNull
 
 @SuppressLint("ViewConstructor")

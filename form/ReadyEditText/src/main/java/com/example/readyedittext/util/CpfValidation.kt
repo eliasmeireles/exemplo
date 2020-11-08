@@ -1,4 +1,4 @@
-package com.groupsoftware.lib.util
+package com.example.readyedittext.util
 
 import java.util.*
 

@@ -1,9 +1,9 @@
-package com.groupsoftware.lib.view
+package com.example.readyedittext.view
 
 import android.annotation.SuppressLint
 import android.content.Context
-import com.groupsoftware.lib.R
-import com.groupsoftware.lib.util.DateUtil
+import com.example.readyedittext.R
+import com.example.readyedittext.util.DateUtil
 import org.jetbrains.annotations.NotNull
 import org.joda.time.DateTime
 import org.joda.time.DateTimeZone
